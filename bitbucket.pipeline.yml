@@ -1,0 +1,43 @@
+
+# bitbucket-pipelines.yml
+
+image: python:3.9  # Use an image with Python 3.9
+
+pipelines:
+  default:
+    - step:
+        name: Run Kalakuta Workflow
+        script:
+          - echo "Check out the code"
+          - git config --global user.email "your_email@example.com"  # Add your email here
+          - git config --global user.name "Your Name"  # Add your name here
+          - echo "Installing required packages"
+          - pip install requests
+          - echo "Running the script"
+          - python new.py
+
+  branches:
+    main:
+      - step:
+          name: Run Kalakuta Workflow on Push
+          script:
+            - echo "Check out the code"
+            - git config --global user.email "your_email@example.com"  # Add your email here
+            - git config --global user.name "Your Name"  # Add your name here
+            - echo "Installing required packages"
+            - pip install requests
+            - echo "Running the script"
+            - python new.py
+
+  scheduled:
+    - cron: "*/240 * * * *"  # Adjust as needed
+      step:
+        name: Scheduled Run
+        script:
+          - echo "Check out the code"
+          - git config --global user.email "your_email@example.com"  # Add your email here
+          - git config --global user.name "Your Name"  # Add your name here
+          - echo "Installing required packages"
+          - pip install requests
+          - echo "Running the script"
+          - python new.py
